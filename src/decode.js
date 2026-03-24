@@ -1,8 +1,11 @@
+const brailleMap = {
+  '100000': 'a',
+  '110000': 'b',
+  '100100': 'c'
+};
+
 function decodeBraille(brailleString) {
-  if (brailleString === '100000') {
-    return 'a';
-  }
-  return '';
+  return brailleMap[brailleString] || '';
 }
 
 module.exports = {
