@@ -16,4 +16,8 @@ describe('Braille Decoding', () => {
     test('decodes word "abc"', () => {
     expect(decodeBraille('100000110000100100')).toBe('abc');
   });
+
+test('decodes word "hello"', () => {
+  expect(decodeBraille('110010100010111000111000101010')).toBe('hello');
+    });
 });
