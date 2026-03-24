@@ -20,4 +20,12 @@ describe('Braille Decoding', () => {
 test('decodes word "hello"', () => {
   expect(decodeBraille('110010100010111000111000101010')).toBe('hello');
     });
+
+test('decodes words with space', () => {
+  expect(decodeBraille('110010010100000000011110110010100010111010100010')).toBe('hi there');
+    });
+
+test('decodes capital letter', () => {
+  expect(decodeBraille('000001110010')).toBe('H');
+    });
 });
