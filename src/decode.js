@@ -5,7 +5,14 @@ const brailleMap = {
 };
 
 function decodeBraille(brailleString) {
-  return brailleMap[brailleString] || '';
+    const chunks = brailleString.match(/.{6}/g);
+  let result = '';
+
+    for (const chunk of chunks) {
+    result += brailleMap[chunk] || '';
+  }
+  
+  return result;
 }
 
 module.exports = {
