@@ -15,6 +15,10 @@ const numberMap = {
   '110100': '6', '110110': '7', '110010': '8', '010100': '9', '010110': '0'
 };
 
+function decodeBase64(base64String) {
+  return Buffer.from(base64String, 'base64').toString('utf-8');
+}
+
 function decodeBraille(brailleString) {
     const chunks = brailleString.match(/.{6}/g);
   let result = '';
@@ -54,6 +58,8 @@ function decodeBraille(brailleString) {
   return result;
 }
 
+
 module.exports = {
-  decodeBraille
+  decodeBraille,
+  decodeBase64
 };

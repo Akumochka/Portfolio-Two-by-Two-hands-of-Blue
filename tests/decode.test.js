@@ -1,4 +1,4 @@
-const { decodeBraille } = require('../src/decode');
+const { decodeBraille, decodeBase64 } = require('../src/decode');
 
 describe('Braille Decoding', () => {
   test('decodes letter a', () => {
@@ -35,6 +35,16 @@ test('decodes numbers', () => {
 
 test('decodes numbers in a row', () => {
   expect(decodeBraille('001111100000110000100100')).toBe('123');
-    })
-    
+    });
+});
+
+describe('Base64 Decoding', () => {
+  test('decodes base64 to text', () => {
+    expect(decodeBase64('aGVsbG8=')).toBe('hello');
+  });
+  
+  test('decodes empty base64', () => {
+    expect(decodeBase64('')).toBe('');
+  });
+
 });
