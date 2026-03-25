@@ -28,4 +28,13 @@ test('decodes words with space', () => {
 test('decodes capital letter', () => {
   expect(decodeBraille('000001110010')).toBe('H');
     });
+
+test('decodes numbers', () => {
+  expect(decodeBraille('001111100000')).toBe('1');
+    });
+
+test('decodes numbers in a row', () => {
+  expect(decodeBraille('001111100000110000100100')).toBe('123');
+    })
+    
 });

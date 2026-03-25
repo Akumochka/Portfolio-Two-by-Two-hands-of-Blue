@@ -6,23 +6,44 @@ const brailleMap = {
   '101001': 'u', '111001': 'v', '010111': 'w', '101011': 'x', '101111': 'y',
   '101101': 'z',
   '000000': ' ',
-  '000001': 'CAP'
+  '000001': 'CAP',
+  '001111': 'NUM'
+};
+
+const numberMap = {
+  '100000': '1', '110000': '2', '100100': '3', '100110': '4', '100010': '5',
+  '110100': '6', '110110': '7', '110010': '8', '010100': '9', '010110': '0'
 };
 
 function decodeBraille(brailleString) {
     const chunks = brailleString.match(/.{6}/g);
   let result = '';
   let isCapital = false;
+  let isNumber = false;
 
     for (const chunk of chunks) {
  if (chunk === '000001') {
       isCapital = true;
       continue;
     }
+        if (chunk === '001111') {
+      isNumber = true;
+      continue;
+    }
     
-    let char = brailleMap[chunk] || '';
+    let char;
+    if (isNumber) {
+      char = numberMap[chunk];
+    } else {
+      char = brailleMap[chunk];
+    }
     
-    if (isCapital && char !== ' ') {
+    if (char === ' ') {
+      isNumber = false;
+      isCapital = false;
+    }
+    
+    if (isCapital && char && char !== ' ') {
       char = char.toUpperCase();
       isCapital = false;
     }
