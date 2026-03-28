@@ -1,4 +1,4 @@
-const { decodeBraille, decodeBase64 } = require('../src/decode');
+const { decodeBraille, decodeBase64, decodeROT} = require('../src/decode');
 
 describe('Braille Decoding', () => {
   test('decodes letter a', () => {
@@ -48,3 +48,17 @@ describe('Base64 Decoding', () => {
   });
 
 });
+
+describe('ROT Decoding', () => {
+  test('finds shift based on most common letter e', () => {
+    const ciphertext = 'uryyb jbeyq';
+    const result = decodeROT(ciphertext);
+    expect(result).toBe('hello world');
+  });
+  
+  test('handles punctuation and spaces', () => {
+    const ciphertext = 'Uryyb, Jbeyq!';
+    const result = decodeROT(ciphertext);
+    expect(result).toBe('Hello, World!');
+  });
+})

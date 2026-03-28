@@ -58,8 +58,20 @@ function decodeBraille(brailleString) {
   return result;
 }
 
+function decodeROT(text) {
+  return text.replace(/[a-z]/gi, char => {
+    const isUpper = char === char.toUpperCase();
+    const base = isUpper ? 65 : 97;
+
+    return String.fromCharCode(
+      ((char.charCodeAt(0) - base + 13) % 26) + base
+    );
+  });
+}
+
 
 module.exports = {
   decodeBraille,
-  decodeBase64
+  decodeBase64,
+  decodeROT
 };
